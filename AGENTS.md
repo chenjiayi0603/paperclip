@@ -46,6 +46,13 @@ Restart the dev server after env/PATH changes (same as `pnpm dev:stop` then `pnp
 pnpm dev:restart
 ```
 
+If health shows `database_unreachable` (often after `kill-dev` / `--hard`), reset embedded Postgres and restart (wipes local dev data):
+
+```sh
+pnpm dev:restart:db
+# same as: ./scripts/restart-dev.sh --reset-db -y
+```
+
 This starts:
 
 - API: `http://localhost:3100`
