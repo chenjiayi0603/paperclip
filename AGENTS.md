@@ -40,6 +40,12 @@ pnpm install
 pnpm dev
 ```
 
+Restart the dev server after env/PATH changes (same as `pnpm dev:stop` then `pnpm dev`):
+
+```sh
+pnpm dev:restart
+```
+
 This starts:
 
 - API: `http://localhost:3100`
@@ -52,12 +58,17 @@ curl http://localhost:3100/api/health
 curl http://localhost:3100/api/companies
 ```
 
-Reset local dev DB:
+常用网页与接口汇总见 [`doc/URLS.md`](doc/URLS.md)。
+
+Reset local dev DB (embedded Postgres lives under `~/.paperclip/instances/<instance>/db`; default instance is `default`):
 
 ```sh
-rm -rf data/pglite
+pnpm dev:stop
+rm -rf ~/.paperclip/instances/default/db
 pnpm dev
 ```
+
+Avoid `scripts/kill-dev.sh` / `restart-dev.sh --hard` for routine restarts — they can SIGKILL embedded Postgres and leave the data directory in a bad state, which often surfaces as `database_unreachable` until you reset the `db` folder above.
 
 ## 5. Core Engineering Rules
 

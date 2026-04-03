@@ -40,6 +40,9 @@ import { printStartupBanner } from "./startup-banner.js";
 import { getBoardClaimWarningUrl, initializeBoardClaimChallenge } from "./board-claim.js";
 import { maybePersistWorktreeRuntimePorts } from "./worktree-config.js";
 import { initTelemetry, getTelemetryClient } from "./telemetry.js";
+import { prependUserLocalBinToPath } from "./prepend-user-local-bin-path.js";
+
+prependUserLocalBinToPath();
 
 type BetterAuthSessionUser = {
   id: string;

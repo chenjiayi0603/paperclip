@@ -1,6 +1,7 @@
 #!/usr/bin/env -S node --import tsx
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
 import path from "node:path";
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
@@ -82,6 +83,16 @@ const env: NodeJS.ProcessEnv = {
   ...process.env,
   PAPERCLIP_UI_DEV_MIDDLEWARE: "true",
 };
+
+(function prependUserLocalBin(target: NodeJS.ProcessEnv) {
+  const localBin = path.join(homedir(), ".local", "bin");
+  if (!existsSync(localBin)) return;
+  const sep = path.delimiter;
+  const cur = target.PATH ?? "";
+  const parts = cur.split(sep).filter(Boolean);
+  if (parts.includes(localBin)) return;
+  target.PATH = `${localBin}${sep}${cur}`;
+})(env);
 
 if (mode === "dev") {
   env.PAPERCLIP_DEV_SERVER_STATUS_FILE = devServerStatusFilePath;
