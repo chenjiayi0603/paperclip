@@ -1,6 +1,6 @@
 # DTC 独立站示例公司（Paperclip + Cursor）
 
-本目录为可导入的 [Agent Companies](https://agentcompanies.io/specification) 包，对应「Paperclip + Cursor 独立站卖货」落地计划的可执行模板。
+本目录为可导入的 [Agent Companies](https://agentcompanies.io/specification) 包，对应「Paperclip + Cursor 独立站卖货」落地计划的可执行模板。完整计划正文见 [doc/plans/2026-04-03-paperclip-cursor-dtc-indie-store.md](../../doc/plans/2026-04-03-paperclip-cursor-dtc-indie-store.md)。
 
 ## 1. 选定路线与仓库（STORE_STACK.md）
 

@@ -181,6 +181,7 @@ paperclipai company import ./package \
 
 The monorepo ships a ready-to-import company package for a direct-to-consumer storefront workflow:
 
+- Plan (CN): `doc/plans/2026-04-03-paperclip-cursor-dtc-indie-store.md`
 - Path: `examples/dtc-indie-store/` (see `README.md` inside that folder)
 - Typical import:
 
