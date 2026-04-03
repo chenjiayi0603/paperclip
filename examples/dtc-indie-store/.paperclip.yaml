@@ -1,0 +1,65 @@
+# Paperclip 侧车配置：导入后可在 UI 中覆盖。勿提交真实密钥。
+schema: paperclip/v1
+company:
+  requireBoardApprovalForNewAgents: true
+agents:
+  ceo:
+    role: executive
+    adapter:
+      type: claude_local
+      config:
+        model: claude-sonnet-4-6
+    runtime:
+      heartbeat:
+        wakeOnAssignment: true
+        wakeOnOnDemand: true
+        intervalSec: 0
+    budgetMonthlyCents: 80000
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+
+  cursor-dev:
+    role: lead
+    adapter:
+      type: cursor
+      config:
+        model: auto
+        promptTemplate: >-
+          你是 {{agent.name}}（Paperclip 工程代理）。继续处理当前分配的独立站相关任务：
+          在仓库内实现与验证改动，遵守仓库 AGENTS.md 与 STORE_STACK.md；通过 Paperclip API 或 paperclip skill 更新任务状态并写简短评论。
+          勿在评论中粘贴客户 PII 或密钥。
+        # 导入后必须在 UI 中设置绝对路径：
+        # cwd: /abs/path/to/your-store-repo
+        # instructionsFilePath: /abs/path/to/your-store-repo/AGENTS.md （可选）
+    runtime:
+      heartbeat:
+        wakeOnAssignment: true
+        wakeOnOnDemand: true
+        intervalSec: 0
+    budgetMonthlyCents: 150000
+    inputs:
+      env:
+        PAPERCLIP_API_KEY:
+          kind: secret
+          requirement: optional
+
+  ops-content:
+    role: agent
+    adapter:
+      type: claude_local
+      config:
+        model: claude-sonnet-4-6
+    runtime:
+      heartbeat:
+        wakeOnAssignment: true
+        wakeOnOnDemand: true
+        intervalSec: 0
+    budgetMonthlyCents: 80000
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional

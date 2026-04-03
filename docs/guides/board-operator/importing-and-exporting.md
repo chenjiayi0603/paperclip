@@ -177,6 +177,23 @@ paperclipai company import ./package \
   --json
 ```
 
+## Example: DTC indie store (Paperclip + Cursor)
+
+The monorepo ships a ready-to-import company package for a direct-to-consumer storefront workflow:
+
+- Path: `examples/dtc-indie-store/` (see `README.md` inside that folder)
+- Typical import:
+
+```sh
+paperclipai company import ./examples/dtc-indie-store \
+  --target new \
+  --new-company-name "My DTC Store" \
+  --include company,agents,projects,tasks \
+  --yes
+```
+
+After import, follow that README to set Cursor `cwd`, run `pnpm bootstrap:dtc-goals <companyId>`, and link issues to goals.
+
 ## API Endpoints
 
 The CLI commands use these API endpoints under the hood:
